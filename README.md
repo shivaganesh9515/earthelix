@@ -8,42 +8,59 @@ Built as a Hackathon MVP, this project demonstrates an **Impact-First** philosop
 
 Follow these steps to experience the complete MVP simulation:
 
-### 1. Run the Project Locally
+### 1. Prerequisites
 
-Ensure you have Node.js 18+ installed.
+Before you start, make sure you have the following installed on your machine:
+
+- **Node.js**: Minimum version **18.x** or higher (Download from [nodejs.org](https://nodejs.org/))
+- **npm**: Comes automatically when you install Node.js
+- **Git**: To clone the repository (Download from [git-scm.com](https://git-scm.com/))
+
+### 2. Clone the Repository
+
+Open your terminal (Command Prompt, PowerShell, or macOS Terminal) and run:
 
 ```bash
-# Install dependencies
+git clone https://github.com/shivaganesh9515/earthelix.git
+cd earthelix
+```
+
+### 3. Run the Project Locally
+
+Once inside the `earthelix` folder, install the necessary dependencies and start the server:
+
+```bash
+# Install all required packages
 npm install
 
-# Run the development server
+# Start the local development server
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### 2. The Homepage - Ecosystem Vision (`/`)
+### 4. The Homepage - Ecosystem Vision (`/`)
 
 - **Action**: Scroll through the homepage.
 - **What to look for**: Notice the dynamic "Impact Metrics", the animated "Ecosystem Map", and the "Intelligent Matching Simulation" log. This page sets the visionary tone.
 
-### 3. Schedule a Pickup - Trust & IoT Simulation (`/pickup`)
+### 5. Schedule a Pickup - Trust & IoT Simulation (`/pickup`)
 
 - **Action**: Click "Schedule a Pickup" from the homepage.
 - **What to look for**: Test the manual form. Enter a quantity to see the dynamic CO₂ impact micro-copy update in real-time.
 - _Coming Soon_: Use the toggle to switch to "IoT Smart Bin mode" to simulate automated hardware triggers.
 
-### 4. Find Green Jobs (`/jobs`)
+### 6. Find Green Jobs (`/jobs`)
 
 - **Action**: Navigate to the "Jobs" tab.
 - **What to look for**: An integrated marketplace showing how waste logistics directly translates to local economic growth (Drivers, Sorters, Managers).
 
-### 5. Impact Dashboard - Gamification (`/dashboard`)
+### 7. Impact Dashboard - Gamification (`/dashboard`)
 
 - **Action**: Navigate to the "Dashboard" tab.
 - **What to look for**: A SaaS-style analytics view. Check out the Simulated Ecosystem Growth chart and the Gamified Top Contributors leaderboard.
 
-### 6. Enterprise B2B SaaS (`/enterprise` - Coming Soon)
+### 8. Enterprise B2B SaaS (`/enterprise` - Coming Soon)
 
 - **Action**: Navigate to `/enterprise`.
 - **What to look for**: Highlights how large corporations can use EarthElix for automated ESG compliance and tax write-off logs, proving the monetization strategy.
