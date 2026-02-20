@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# EarthElix: Zero Waste Ecosystem
 
-## Getting Started
+EarthElix is a scalable, B2B SaaS and consumer marketplace for optimizing waste logistics. We connect surplus organic food and materials with processors, fleets, and food banks, creating green jobs along the way.
 
-First, run the development server:
+Built as a Hackathon MVP, this project demonstrates an **Impact-First** philosophy matched with an **Enterprise-Ready** technical vision.
+
+## 🚀 Step-by-Step Guide for Judges / Users
+
+Follow these steps to experience the complete MVP simulation:
+
+### 1. Run the Project Locally
+
+Ensure you have Node.js 18+ installed.
 
 ```bash
+# Install dependencies
+npm install
+
+# Run the development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2. The Homepage - Ecosystem Vision (`/`)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Action**: Scroll through the homepage.
+- **What to look for**: Notice the dynamic "Impact Metrics", the animated "Ecosystem Map", and the "Intelligent Matching Simulation" log. This page sets the visionary tone.
 
-## Learn More
+### 3. Schedule a Pickup - Trust & IoT Simulation (`/pickup`)
 
-To learn more about Next.js, take a look at the following resources:
+- **Action**: Click "Schedule a Pickup" from the homepage.
+- **What to look for**: Test the manual form. Enter a quantity to see the dynamic CO₂ impact micro-copy update in real-time.
+- _Coming Soon_: Use the toggle to switch to "IoT Smart Bin mode" to simulate automated hardware triggers.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Find Green Jobs (`/jobs`)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Action**: Navigate to the "Jobs" tab.
+- **What to look for**: An integrated marketplace showing how waste logistics directly translates to local economic growth (Drivers, Sorters, Managers).
 
-## Deploy on Vercel
+### 5. Impact Dashboard - Gamification (`/dashboard`)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Action**: Navigate to the "Dashboard" tab.
+- **What to look for**: A SaaS-style analytics view. Check out the Simulated Ecosystem Growth chart and the Gamified Top Contributors leaderboard.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 6. Enterprise B2B SaaS (`/enterprise` - Coming Soon)
+
+- **Action**: Navigate to `/enterprise`.
+- **What to look for**: Highlights how large corporations can use EarthElix for automated ESG compliance and tax write-off logs, proving the monetization strategy.
+
+---
+
+## 🛠️ Technology Stack
+
+- **Framework**: Next.js 15 (App Router)
+- **UI Library**: React 19
+- **Styling**: Tailwind CSS (Dark Mode Glassmorphism)
+- **Icons**: Lucide React
+- **Data Architecture (Simulated)**: Internal API routes (`/api/*`) fetching localized JSON mock data to demonstrate decoupled architecture readiness.
+
+## 💡 9 Core Principles Implemented
+
+1. Impact-First Hero (Homepage Metrics)
+2. Ecosystem Thinking (Visual Network Map)
+3. Transparency & Trust (Pickup verified badges, Security page section)
+4. Simplicity over Complexity (Mocked flows over broken logic)
+5. Sustainability Branding (Eco-green, modern dark theme)
+6. Dynamic & Visionary Tone (Professional copy)
+7. Data-Driven Future (SaaS Dashboard & Simulated API fetching)
+8. Intelligent Matching Simulation (Algorithm live logs)
+9. Gamification (Leaderboards & Progress Bars)

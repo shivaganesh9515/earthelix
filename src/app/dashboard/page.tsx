@@ -1,8 +1,44 @@
-import { mockStats, leaderboard } from "@/data/mockStats";
+"use client";
+
+import { useState, useEffect } from "react";
 import StatsCard from "@/components/StatsCard";
 import { Leaf, Users, Briefcase, Award, Trophy, Download, Calendar, BarChart3 } from "lucide-react";
 
+type LeaderboardUser = {
+  id: string;
+  name: string;
+  collected: number;
+  badge: string;
+};
+
+type StatsType = {
+  totalWasteCollected: number;
+  co2Saved: number;
+  activeUsers: number;
+  jobsFilled: number;
+};
+
 export default function DashboardPage() {
+  const [stats, setStats] = useState<StatsType | null>(null);
+  const [leaderboard, setLeaderboard] = useState<LeaderboardUser[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchStats() {
+      try {
+        const res = await fetch('/api/stats');
+        const data = await res.json();
+        setStats(data.stats);
+        setLeaderboard(data.leaderboard);
+      } catch (error) {
+        console.error("Failed to load dashboard data", error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+    fetchStats();
+  }, []);
+
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-4">
@@ -24,32 +60,38 @@ export default function DashboardPage() {
         </div>
       </div>
 
-      <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-        <StatsCard 
-          title="Total Waste Repurposed" 
-          value={`${mockStats.totalWasteCollected.toLocaleString()} kg`} 
-          icon={<Leaf className="w-6 h-6" />}
-          trend="+12%"
-        />
-        <StatsCard 
-          title="Net CO₂ Saved" 
-          value={`${mockStats.co2Saved.toLocaleString()} kg`} 
-          icon={<Award className="w-6 h-6" />}
-          trend="+8%"
-        />
-        <StatsCard 
-          title="Green Jobs Filled" 
-          value={mockStats.jobsFilled} 
-          icon={<Briefcase className="w-6 h-6" />}
-          trend="+24%"
-        />
-        <StatsCard 
-          title="Active Ecosystem Nodes" 
-          value={mockStats.activeUsers} 
-          icon={<Users className="w-6 h-6" />}
-          trend="+5%"
-        />
-      </div>
+      {isLoading ? (
+        <div className="w-full h-40 glass rounded-2xl flex items-center justify-center animate-pulse mb-8">
+          <span className="text-gray-500 font-medium">Loading ecosystem data...</span>
+        </div>
+      ) : stats ? (
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <StatsCard 
+            title="Total Waste Repurposed" 
+            value={`${stats.totalWasteCollected.toLocaleString()} kg`} 
+            icon={<Leaf className="w-6 h-6" />}
+            trend="+12%"
+          />
+          <StatsCard 
+            title="Net CO₂ Saved" 
+            value={`${stats.co2Saved.toLocaleString()} kg`} 
+            icon={<Award className="w-6 h-6" />}
+            trend="+8%"
+          />
+          <StatsCard 
+            title="Green Jobs Filled" 
+            value={stats.jobsFilled} 
+            icon={<Briefcase className="w-6 h-6" />}
+            trend="+24%"
+          />
+          <StatsCard 
+            title="Active Ecosystem Nodes" 
+            value={stats.activeUsers} 
+            icon={<Users className="w-6 h-6" />}
+            trend="+5%"
+          />
+        </div>
+      ) : null}
 
       {/* Mock Growth Chart Section */}
       <div className="glass-card p-8 rounded-3xl mb-8 border border-white/5 relative overflow-hidden">
@@ -79,7 +121,9 @@ export default function DashboardPage() {
             Top Contributors (Gamification)
           </h2>
           <div className="space-y-4">
-            {leaderboard.map((user, idx) => (
+            {isLoading ? (
+               <div className="w-full h-20 glass rounded-xl animate-pulse"></div>
+            ) : leaderboard.map((user, idx) => (
               <div key={user.id} className="glass p-4 rounded-xl flex items-center justify-between hover:border-eco-500/30 transition-colors group">
                 <div className="flex items-center gap-4">
                   <div className={`w-10 h-10 rounded-full font-bold bg-zinc-800 flex items-center justify-center border border-white/5 transition-colors ${idx === 0 ? 'text-yellow-400 group-hover:border-yellow-500/50' : 'text-eco-400 group-hover:border-eco-500/50'}`}>

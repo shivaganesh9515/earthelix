@@ -14,11 +14,21 @@ export default function Navbar() {
               </span>
             </Link>
           </div>
-          <div className="hidden md:block">
-            <div className="ml-10 flex items-baseline space-x-8">
+          <div className="hidden md:flex items-center space-x-8">
+            <div className="flex items-baseline space-x-8">
               <Link href="/pickup" className="text-gray-300 hover:text-white transition-colors duration-200">Pickup Demo</Link>
               <Link href="/jobs" className="text-gray-300 hover:text-white transition-colors duration-200">Jobs</Link>
               <Link href="/dashboard" className="text-gray-300 hover:text-white transition-colors duration-200">Dashboard</Link>
+              <Link href="/enterprise" className="text-blue-400 hover:text-blue-300 font-medium transition-colors duration-200">Enterprise B2B</Link>
+            </div>
+            {/* Mock Role Switcher (CEO Vision) */}
+            <div className="border-l border-white/20 pl-6 flex items-center gap-2">
+              <span className="text-xs text-gray-500 font-medium uppercase tracking-wider">Demo View:</span>
+              <select className="bg-black/40 border border-white/10 text-white text-xs rounded-md px-2 py-1 focus:outline-none focus:border-eco-500 cursor-pointer">
+                <option value="donor">Donor (Restaurant)</option>
+                <option value="collector">Driver Partner</option>
+                <option value="enterprise">CSR Manager (B2B)</option>
+              </select>
             </div>
           </div>
           <div className="md:hidden">

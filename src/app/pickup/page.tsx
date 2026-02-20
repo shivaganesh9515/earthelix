@@ -1,13 +1,29 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Timeline from "@/components/Timeline";
-import { CheckCircle2, UserCheck, Package, AlertCircle, ShieldCheck } from "lucide-react";
+import { CheckCircle2, UserCheck, Package, AlertCircle, ShieldCheck, Wifi, Cpu } from "lucide-react";
 
 export default function PickupDemo() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [status, setStatus] = useState(0);
   const [quantity, setQuantity] = useState("50");
+  const [isIotMode, setIsIotMode] = useState(false);
+
+  // Simulate IoT Trigger
+  useEffect(() => {
+    if (isIotMode) {
+      setQuantity("85"); // Simulated bin capacity reached
+      const timer = setTimeout(() => {
+        setIsSubmitted(true);
+        setStatus(1);
+        setTimeout(() => setStatus(2), 2000);
+        setTimeout(() => setStatus(3), 4000);
+      }, 3000); // 3 seconds to auto-trigger
+      
+      return () => clearTimeout(timer);
+    }
+  }, [isIotMode]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -21,9 +37,25 @@ export default function PickupDemo() {
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="mb-12">
-        <h1 className="text-4xl font-bold mb-4">Request a <span className="gradient-text">Verified Pickup</span></h1>
-        <p className="text-gray-400">Securely schedule your surplus food collection. Every kg makes a difference.</p>
+      <div className="mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+        <div>
+          <h1 className="text-4xl font-bold mb-4">Request a <span className="gradient-text">Verified Pickup</span></h1>
+          <p className="text-gray-400">Securely schedule your surplus food collection. Every kg makes a difference.</p>
+        </div>
+        
+        {/* IoT Mode Toggle */}
+        <div className="glass px-4 py-3 rounded-xl flex items-center gap-3 border-blue-500/30">
+          <div className="flex flex-col">
+            <span className="text-xs text-blue-400 font-bold uppercase">Enterprise Demo</span>
+            <span className="text-sm text-white">IoT Smart Bin Match</span>
+          </div>
+          <button 
+            onClick={() => { setIsIotMode(!isIotMode); setIsSubmitted(false); setStatus(0); }}
+            className={`w-12 h-6 rounded-full relative transition-colors duration-300 ${isIotMode ? 'bg-blue-500' : 'bg-zinc-700'}`}
+          >
+            <div className={`w-5 h-5 bg-white rounded-full absolute top-0.5 transition-all duration-300 ${isIotMode ? 'left-6' : 'left-0.5'}`}></div>
+          </button>
+        </div>
       </div>
 
       <div className="grid md:grid-cols-2 gap-12">
@@ -78,10 +110,12 @@ export default function PickupDemo() {
 
             <button 
               type="submit" 
-              disabled={isSubmitted}
-              className="w-full py-4 bg-eco-600 hover:bg-eco-500 disabled:bg-zinc-800 disabled:text-gray-500 text-white font-bold rounded-xl transition-colors mt-4 shadow-lg shadow-eco-500/20 disabled:shadow-none"
+              disabled={isSubmitted || isIotMode}
+              className={`w-full py-4 text-white font-bold rounded-xl transition-colors mt-4 shadow-lg disabled:shadow-none ${isIotMode ? 'bg-blue-600/50 cursor-not-allowed border border-blue-500/50' : 'bg-eco-600 hover:bg-eco-500 disabled:bg-zinc-800 disabled:text-gray-500 shadow-eco-500/20'}`}
             >
-              {isSubmitted ? "Logistics Request Sent" : "Schedule Verified Pickup"}
+              {isIotMode 
+                ? (isSubmitted ? "IoT Request Dispatched" : "Awaiting Sensor Threshold...") 
+                : (isSubmitted ? "Logistics Request Sent" : "Schedule Verified Pickup")}
             </button>
           </form>
         </div>
@@ -123,10 +157,27 @@ export default function PickupDemo() {
               <Timeline status={status} />
             </div>
           ) : (
-            <div className="h-full flex flex-col items-center justify-center text-center p-8 glass-card rounded-3xl border-dashed border-2 border-white/10 min-h-[400px]">
-              <Package className="w-16 h-16 text-gray-600 mb-4" />
-              <h3 className="text-xl font-bold text-gray-300 mb-2">Awaiting Parameters</h3>
-              <p className="text-gray-500 max-w-sm">Complete the form to initiate an intelligent routing request across our partner network.</p>
+            <div className={`h-full flex flex-col items-center justify-center text-center p-8 glass-card rounded-3xl border-dashed border-2 min-h-[400px] transition-colors duration-500 ${isIotMode ? 'border-blue-500/30 bg-blue-500/5' : 'border-white/10'}`}>
+              {isIotMode ? (
+                <>
+                  <div className="relative mb-6">
+                    <Cpu className="w-16 h-16 text-blue-500" />
+                    <Wifi className="w-6 h-6 text-blue-400 absolute -top-2 -right-2 animate-ping" />
+                  </div>
+                  <h3 className="text-xl font-bold text-blue-300 mb-2">Smart Sensor Active</h3>
+                  <p className="text-blue-400/70 max-w-sm mb-4">Monitoring Bin EV-409 capacity...</p>
+                  <div className="w-64 bg-black/50 rounded-full h-4 overflow-hidden border border-blue-500/20">
+                    <div className="bg-blue-500 h-full w-[85%] animate-pulse rounded-full"></div>
+                  </div>
+                  <p className="text-xs text-blue-400 mt-2 font-mono">Capacity: 85% - Auto-Trigger Initiated</p>
+                </>
+              ) : (
+                <>
+                  <Package className="w-16 h-16 text-gray-600 mb-4" />
+                  <h3 className="text-xl font-bold text-gray-300 mb-2">Awaiting Parameters</h3>
+                  <p className="text-gray-500 max-w-sm">Complete the form to initiate an intelligent routing request across our partner network.</p>
+                </>
+              )}
             </div>
           )}
         </div>
