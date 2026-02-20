@@ -110,7 +110,7 @@ export default function DashboardPage() {
            </div>
            <div>
              <h3 className="text-xl font-bold text-white mb-2 relative z-10">Your Next Milestone</h3>
-             <p className="text-gray-400 text-sm mb-6 relative z-10">You're 15kg away from unlocking the "Zero Waste Hero" tier.</p>
+             <p className="text-gray-400 text-sm mb-6 relative z-10">You&apos;re 15kg away from unlocking the &quot;Zero Waste Hero&quot; tier.</p>
              
              <div className="space-y-2 mb-8 relative z-10">
                <div className="flex justify-between text-sm font-semibold">

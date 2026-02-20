@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Leaf, TrendingUp, Users, ShieldCheck, Zap, Network, Bot, Sparkles } from "lucide-react";
+import { ArrowRight, Leaf, Users, ShieldCheck, Zap, Network, Bot, Sparkles } from "lucide-react";
 
 export default function Home() {
   return (
@@ -128,7 +128,7 @@ export default function Home() {
             <div className="space-y-4 font-mono text-sm">
               <div className="text-gray-400"><span className="text-blue-400">[12:45:01]</span> REQ: 50kg Compost, UID: 9942</div>
               <div className="text-gray-400"><span className="text-blue-400">[12:45:02]</span> SCAN: 3 Drivers in 5km radius</div>
-              <div className="text-green-400"><span className="text-blue-400">[12:45:03]</span> MATCH: Driver "Alex J." (Dist: 1.2km, Rat: 4.9)</div>
+              <div className="text-green-400"><span className="text-blue-400">[12:45:03]</span> MATCH: Driver &quot;Alex J.&quot; (Dist: 1.2km, Rat: 4.9)</div>
               <div className="text-gray-400"><span className="text-blue-400">[12:45:05]</span> ROUTE: Optimized. Target Processor: P-12</div>
               <div className="text-eco-400 pt-4 mt-4 border-t border-white/5 opacity-50">Awaiting acknowledgment...</div>
             </div>
